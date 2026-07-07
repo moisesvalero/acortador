@@ -89,13 +89,13 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [BASE_DIR / "static" / "dist"]
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
-# En Vercel serverless, /tmp no persiste entre cold starts.
-# Whitenoise sirve los archivos directamente desde STATICFILES_DIRS
-# sin necesidad de collectstatic.
 if os.environ.get("VERCEL"):
-    WHITENOISE_USE_FINDERS = True
+    # Vercel serverless: /tmp no persiste entre cold starts,
+    # STATIC_ROOT no se necesita porque servimos los archivos
+    # desde STATICFILES_DIRS directamente vía WhiteNoise en wsgi.py
+    STATIC_ROOT = None
+else:
+    STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
