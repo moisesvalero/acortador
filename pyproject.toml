@@ -1,0 +1,36 @@
+[project]
+name = "acortador"
+version = "0.1.0"
+description = "Acortador de enlaces estilo Bit.ly para moisesvalero.es"
+requires-python = ">=3.11"
+dependencies = [
+    "django>=5.0,<6.0",
+    "django-htmx>=1.18,<2.0",
+    "gunicorn>=22.0,<24.0",
+    "whitenoise>=6.7,<7.0",
+    "python-dotenv>=1.0,<2.0",
+    "dj-database-url>=3.1.2",
+    "psycopg2-binary>=2.9.12",
+]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 88
+exclude = ["migrations", ".venv"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "acortador.settings"
+python_files = ["tests.py", "test_*.py", "*_tests.py"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-django>=4.12.0",
+    "ruff>=0.15.20",
+]

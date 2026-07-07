@@ -1,0 +1,13 @@
+<div id="result" class="bg-[#0D0D0D] border border-[#1F1F1F] rounded-lg p-5 animate-fade-in">
+  <p class="text-xs text-[#555] mb-2">enlace corto</p>
+  <div class="flex items-center gap-3 mb-3">
+    <input type="text" value="{{ BASE_URL }}/{{ link.short_code }}" readonly
+           class="flex-1 bg-[#111] border border-[#222] rounded px-3 py-2 text-[#C6FF00] font-mono text-sm outline-none select-all" id="short-url">
+    <button onclick="navigator.clipboard.writeText(this.previousElementSibling.value);this.textContent='copiado!';setTimeout(()=>this.textContent='copiar',2000)"
+            class="bg-[#1A1A1A] text-[#888] px-4 py-2 rounded-lg text-xs font-medium hover:bg-[#222] hover:text-white transition-colors shrink-0">
+      copiar
+    </button>
+  </div>
+  <p class="text-xs text-[#555] truncate">{{ link.original_url }}</p>
+  <p class="text-xs text-[#444] mt-2">{{ link.clicks_count }} clicks · creado hace {{ link.created_at|timesince }}</p>
+</div>
