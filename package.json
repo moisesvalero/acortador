@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "tailwind": "tailwindcss -i static/src/input.css -o static/dist/output.css --watch",
-    "tailwind:build": "tailwindcss -i static/src/input.css -o static/dist/output.css --minify"
+    "build:css": "tailwindcss -i static/src/input.css -o public/static/output.css --minify",
+    "watch:css": "tailwindcss -i static/src/input.css -o public/static/output.css --watch"
   },
   "devDependencies": {
     "tailwindcss": "^3.4.0"
