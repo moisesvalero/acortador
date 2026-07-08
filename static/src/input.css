@@ -133,6 +133,40 @@
   .reveal-delay-3 {
     transition-delay: 300ms;
   }
+
+  /* Animación del Gradiente de Texto */
+  @keyframes gradient-flow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  .animate-gradient-flow {
+    background-size: 200% auto;
+    animation: gradient-flow 6s ease infinite;
+  }
+
+  /* Animación de Entrada en Perspectiva 3D del Hero */
+  @keyframes hero-reveal {
+    0% {
+      opacity: 0;
+      transform: translateY(40px) rotateX(-8deg) scale(0.96);
+      filter: blur(8px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg) scale(1);
+      filter: blur(0);
+    }
+  }
+  .animate-hero-reveal {
+    animation: hero-reveal 1.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
 }
 
 /* Los estilos del admin ahora los gestiona django-jazzmin */
