@@ -26,6 +26,7 @@ CSRF_TRUSTED_ORIGINS = os.environ.get(
 ).split(",")
 
 INSTALLED_APPS = [
+    "jazzmin",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -53,7 +54,7 @@ ROOT_URLCONF = "acortador.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / "acortador" / "templates"],
+        "DIRS": [],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -100,6 +101,28 @@ IP_HASH_SALT = os.environ.get(
 )
 
 BASE_URL = os.environ.get("BASE_URL", "http://localhost:8000")
+
+JAZZMIN_SETTINGS = {
+    "site_title": "acortador",
+    "site_header": "acortador",
+    "site_brand": "acortador",
+    "welcome_sign": "Panel de administración",
+    "copyright": "moisesvalero",
+    "search_model": ["shortener.Link", "shortener.Click"],
+    "topmenu_links": [
+        {"name": "Volver al inicio", "url": "/", "permissions": ["auth.view_user"]},
+    ],
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": [],
+    "language_chooser": True,
+    "changeform_format": "horizontal_tabs",
+    "icons": {
+        "shortener.Link": "fas fa-link",
+        "shortener.Click": "fas fa-mouse-pointer",
+    },
+}
 
 CACHES = {
     "default": {
