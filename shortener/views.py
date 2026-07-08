@@ -1,5 +1,5 @@
 from django.db.models import F
-from django.http import HttpResponseBadRequest, HttpResponseNotFound, JsonResponse
+from django.http import HttpResponse, HttpResponseBadRequest, HttpResponseNotFound, JsonResponse
 from django.shortcuts import redirect, render
 from django.views.decorators.http import require_http_methods
 
@@ -63,3 +63,11 @@ def redirect_view(request, code):
 
 def health(request):
     return JsonResponse({"status": "ok"})
+
+
+@require_http_methods(["DELETE", "POST"])
+def delete_link(request, code):
+    deleted, _ = Link.objects.filter(short_code=code).delete()
+    if deleted:
+        return HttpResponse("")
+    return HttpResponseNotFound("")
