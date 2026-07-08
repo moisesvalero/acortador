@@ -19,12 +19,15 @@ for static_dir in settings.STATICFILES_DIRS:
     application.add_files(str(static_dir), prefix=settings.STATIC_URL)
 
 # Estáticos del admin de Django + jazzmin
+# jazzmin trae sus propios vendor/ (adminlte, fontawesome, bootstrap)
+# que se sirven bajo /static/vendor/, /static/jazzmin/ y /static/admin/.
+# El path completo de jazzmin cubre todo eso.
+_jazzmin_static = Path(jazzmin.__file__).parent / "static"
+if _jazzmin_static.is_dir():
+    application.add_files(str(_jazzmin_static), prefix="static/")
 _admin_static = Path(django.__file__).parent / "contrib" / "admin" / "static" / "admin"
 if _admin_static.is_dir():
     application.add_files(str(_admin_static), prefix="static/admin/")
-_jazzmin_static = Path(jazzmin.__file__).parent / "static" / "jazzmin"
-if _jazzmin_static.is_dir():
-    application.add_files(str(_jazzmin_static), prefix="static/jazzmin/")
 
 # En Vercel serverless, ejecuta migrations al arrancar en frío
 if os.environ.get("VERCEL") and os.environ.get("DATABASE_URL"):
